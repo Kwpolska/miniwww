@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 # Mini WWW Generator
-# Copyright © 2017, Chris Warrick.
+# Copyright © 2017-2018, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@ for d in (ASSET_PATH, INPUT_PATH, OUTPUT_PATH):
 
 # Read all assets in.
 ASSETS: typing.Dict[str, str] = {
-    'footer-copyright': 'copyright © 2009–2017 <a href="https://chriswarrick.com/contact/">Chris Warrick</a>',
+    'footer-copyright': 'copyright © 2009–2018 <a href="https://chriswarrick.com/contact/">Chris Warrick</a>',
     'footer-operation': 'a <a href="https://chriswarrick.com/contact/">Chris Warrick</a> operation'
 }
 

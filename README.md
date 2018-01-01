@@ -25,7 +25,7 @@ And some private ones as well. (I’m using different templates/CSS/assets to wh
 License
 -------
 
-Copyright © 2017, Chris Warrick.
+Copyright © 2017-2018, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
