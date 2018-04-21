@@ -78,8 +78,9 @@ def render_page(meta: MetaDict, content: HtmlTemplate, footer: typing.Optional[H
         'base': meta.get('base', ''),
         'css_html': '',
         'content_html': content,
+        'html_title': meta.get('html_title', f"{meta['page_title']} | {meta['header_title']}"),
     }
-    context['html_title'] = meta.get('html_title', f"{context['page_title']} | {context['header_title']}")
+
     style_embeds: typing.List[str] = []
     style_links: typing.List[str] = []
     if meta['style'] == 'embed':
@@ -141,7 +142,7 @@ def extract_parts(raw_content: str) -> PartDict:
     return parts
 
 
-def main() -> None:
+def main() -> None:  # NOQA
     """Generate HTML files."""
     files: typing.List[Path] = [path for path in INPUT_PATH.iterdir() if not path.name.startswith('.')]
     size: int = len(files)
