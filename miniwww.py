@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 # Mini WWW Generator
-# Copyright © 2017-2018, Chris Warrick.
+# Copyright © 2017-2021, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@ for d in (ASSET_PATH, INPUT_PATH, OUTPUT_PATH):
 
 # Read all assets in.
 ASSETS: typing.Dict[str, str] = {
-    'footer-copyright': 'copyright © 2009–2018 <a href="https://chriswarrick.com/contact/">Chris Warrick</a>',
+    'footer-copyright': 'copyright © 2009–2021 <a href="https://chriswarrick.com/contact/">Chris Warrick</a>',
     'footer-operation': 'a <a href="https://chriswarrick.com/contact/">Chris Warrick</a> operation'
 }
 
@@ -97,10 +97,16 @@ def render_page(meta: MetaDict, content: HtmlTemplate, footer: typing.Optional[H
         else:
             style_links.append(filename)
 
-    for url in style_links:
-        context['css_html'] += f'<link rel="stylesheet" href="{context["base"] + url}">\n'
+    if meta.get('ssp-webfont') == 'yes':
+        style_links.append(ASSETS['ssp-webfont.txt'].strip())
+
     if style_embeds:
         context['css_html'] += '<style>\n' + '\n'.join(style_embeds) + '\n</style>'
+    for url in style_links:
+        if url.startswith(('http://', 'https://')):
+            context['css_html'] += f'<link rel="stylesheet" href="{url}">\n'
+        else:
+            context['css_html'] += f'<link rel="stylesheet" href="{context["base"] + url}">\n'
     context['css_html'] = context['css_html'].strip()
 
     if footer is not None:
